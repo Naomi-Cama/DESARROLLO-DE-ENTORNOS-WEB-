@@ -1,69 +1,39 @@
-# Portal de Soporte TI — ejemplo resuelto
+# Portal de Soporte TI - Nova Servicios
 
-Ejemplo completo de la Guía de aprendizaje 2, sesiones 3 y 4. Incluye navbar mobile first, hero, cuatro tarjetas con Grid y formulario con validación nativa. Usa datos ficticios: Ana Prueba y ana@example.test. El botón confirma una simulación; no crea un ticket.
+## Aporte Individual (3 cambios propios)
 
-## Requisitos y ejecución
+### 1. Ampliación de contenido
+- **Archivo:** `public/index.html`
+- **Cambio:** Se agregaron las secciones de "Preguntas Frecuentes" (divididas en 2 categorías: Soporte Técnico y Facturación) y la sección de "Contacto" con horario ficticio, cumpliendo con el contenido mínimo solicitado.
+- **Evidencia:** [Captura de pantalla de la sección FAQ y Contacto]
 
-Instala Node.js LTS (22 o superior; el flujo de clase usa 24), Git y VS Code.
-La carpeta correcta es la que contiene package.json. Ábrela con VS Code.
+### 2. Mejora técnica de HTML/CSS
+- **Archivo:** `public/index.html` y `public/assets/css/styles.css`
+- **Cambio:** Se implementó un diseño **Mobile-First** con Grid para las tarjetas de servicio. En móvil (1 columna), tablet (2 columnas) y escritorio (4 columnas). Además, se añadieron **variables CSS** en `:root` para los colores y espaciados, y se usó **Flexbox** en la navegación.
+- **Evidencia:** [Captura de pantalla en 320px, 768px y 1440px]
 
-```bash
-npm ci
-npm run dev
-```
+### 3. Corrección detectada durante pruebas
+- **Archivo:** `public/assets/js/ui.js`
+- **Cambio:** Se corrigió la lógica del menú hamburguesa para que sea accesible. Ahora el botón tiene `aria-expanded` y el menú se puede cerrar con la tecla **Escape**, mejorando la experiencia con teclado.
+- **Evidencia:** [Captura de pantalla del menú abierto y cerrado con teclado]
 
-Abre http://127.0.0.1:5500. Guarda los cambios y recarga el navegador.
-Detén el servidor con Ctrl+C. El servidor local no tiene recarga automática.
-Para ver la página sin instalar dependencias puedes usar Live Server sobre public/index.html.
-Si PowerShell bloquea npm.ps1, usa npm.cmd con los mismos argumentos.
+## Problemas corregidos
 
-```bash
-npm run format
-npm run check
-npm run check:syntax
-npm test
-```
+### Problema 1: El formulario no validaba la descripción mínima
+- **Antes:** El campo de descripción no tenía `minlength` ni `maxlength`.
+- **Después:** Se agregó `minlength="10"` y `maxlength="500"`, y se muestra un mensaje de ayuda al usuario.
+- **Evidencia:** [Captura de pantalla del error de validación]
 
-npm ci instala la versión fijada en package-lock.json. No necesitas npm init ni
-instalar Prettier otra vez: la preparación de la sección 11 de la guía ya está hecha.
+### Problema 2: El menú no era operable con teclado
+- **Antes:** El menú hamburguesa solo se activaba con clic.
+- **Después:** Se agregó soporte para `aria-expanded` y cierre con `Escape`.
+- **Evidencia:** [Captura de pantalla del código JS]
 
-## Archivos
-
-- public/index.html: estructura y formulario.
-- public/assets/css/styles.css: estilos responsive.
-- public/assets/js/ui.js: apoyo para menú y simulación, sin llamadas a una API.
-- docs/actividades.md: trabajo de las sesiones 3 y 4.
-- docs/pruebas.md: evidencia que debe completar el equipo.
-- .github/pull_request_template.md: plantilla del PR.
-- .github/workflows/calidad.yml: comprobaciones de calidad.
-- vercel.json: configuración para servir public.
-- scripts/ y tests/: servidor local y sus pruebas, ya preparados.
-
-Trabaja en los archivos de public y en la documentación. No necesitas modificar
-el servidor para desarrollar esta semana.
-
-## Alcance de las comprobaciones
-
-Actions comprueba formato, sintaxis de JavaScript y las pruebas del servidor local.
-También debes probar manualmente la interfaz, el teclado, las restricciones del formulario
-y los anchos de pantalla. Que el check pase no significa que completaste todas las actividades.
-Vercel publica el sitio por su integración con GitHub; este workflow no despliega.
-
-## Despliegue y ramas
-
-Sigue [la preparación del repositorio y de Vercel](docs/git-y-vercel.md).
-No se incluyen repositorios Git inicializados, URLs de Preview inventadas ni credenciales.
-Al publicar, completa README y el PR con tu repositorio, equipo y Preview reales.
-
-## Correspondencia con la guía
-
-Los capítulos 3 a 5 construyen la landing; 6 añade Grid; 7 a 9 completan el formulario;
-10 y 11 cubren Preview y calidad; 12 a 15 preparan la revisión y la entrega.
-El código ui.js añade guardas para funcionar mientras faltan elementos en el proyecto base.
-No requiere React, Vite, Supabase ni base de datos en esta semana.
-
-## Referencias
-
-- [Prettier: instalación reproducible](https://prettier.io/docs/install)
-- [Vercel: configuración](https://vercel.com/docs/project-configuration/vercel-json)
-- [Vercel: ambientes](https://vercel.com/docs/deployments/environments)
+## Pruebas realizadas
+- **P01 Navegación:** Todos los enlaces funcionan. El formulario está a 1 clic desde el inicio.
+- **P02 320px:** Sin scroll horizontal, todo el contenido es legible.
+- **P03 768px:** Las tarjetas se muestran en 2 columnas.
+- **P04 1440px:** Las tarjetas se muestran en 4 columnas.
+- **P05 Teclado:** Recorrido completo con Tab, foco visible.
+- **P06 Formulario inválido:** Se probaron campos vacíos, nombre de 2 caracteres, correo inválido, etc.
+- **P07 Formulario válido:** Se probó con datos ficticios y mostró la confirmación de simulación.

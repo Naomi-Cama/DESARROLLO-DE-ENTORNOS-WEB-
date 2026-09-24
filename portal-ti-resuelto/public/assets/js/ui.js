@@ -1,38 +1,42 @@
-// Apoyo de las sesiones 3 y 4. Los eventos se estudiarán en la semana 5.
-// Este archivo funciona también mientras el estudiante completa la base.
-const nav = document.querySelector('.navbar');
-const toggle = document.querySelector('.navbar__toggle');
-const menu = document.querySelector('#nav-menu');
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Lógica del menú hamburguesa (accesible)
+    const btnMenu = document.querySelector('.menu-toggle');
+    const menuPrincipal = document.getElementById('menu-principal');
 
-if (nav && toggle && menu) {
-  toggle.hidden = false;
-  nav.classList.add('js-menu');
-  toggle.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') !== 'true';
-    toggle.setAttribute('aria-expanded', String(open));
-    menu.classList.toggle('is-open', open);
-  });
-  nav.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && menu.classList.contains('is-open')) {
-      menu.classList.remove('is-open');
-      toggle.setAttribute('aria-expanded', 'false');
-      if (window.matchMedia('(max-width: 767px)').matches) toggle.focus();
+    if (btnMenu && menuPrincipal) {
+        btnMenu.addEventListener('click', () => {
+            const expanded = btnMenu.getAttribute('aria-expanded') === 'true';
+            btnMenu.setAttribute('aria-expanded', !expanded);
+            menuPrincipal.classList.toggle('activo');
+        });
+
+        // Cerrar menú con Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menuPrincipal.classList.contains('activo')) {
+                menuPrincipal.classList.remove('activo');
+                btnMenu.setAttribute('aria-expanded', 'false');
+                btnMenu.focus();
+            }
+        });
     }
-  });
-}
 
-const form = document.querySelector('#support-form');
-const submit = document.querySelector('#submit-demo');
-const status = document.querySelector('#form-status');
-if (form && submit && status) {
-  form.addEventListener('input', () => {
-    status.textContent = '';
-  });
-  form.addEventListener('submit', (event) => {
-    // La validación nativa ocurre ANTES de submit. No usar novalidate.
-    event.preventDefault();
-    status.textContent = 'Validación completada. No se envió ni guardó ningún ticket.';
-  });
-  // Permanece deshabilitado si el apoyo no ha cargado.
-  submit.disabled = false;
-}
+    // 2. Lógica de confirmación del formulario (Simulación)
+    const formSoporte = document.getElementById('form-soporte');
+    
+    if (formSoporte) {
+        formSoporte.addEventListener('submit', (e) => {
+            e.preventDefault(); // Evita que la página se recargue
+            
+            // Validación nativa del navegador
+            if (!formSoporte.checkValidity()) {
+                formSoporte.reportValidity();
+                return;
+            }
+
+            // Confirmación de simulación (NO se guarda información)
+            alert('¡Gracias! Tu solicitud de soporte ha sido registrada (SIMULACIÓN).\n\nIMPORTANTE: Este formulario no envía ni guarda información real.');
+            formSoporte.reset(); // Limpia el formulario
+        });
+    }
+});

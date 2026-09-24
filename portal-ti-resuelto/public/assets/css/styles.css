@@ -1,210 +1,324 @@
+/* ==========================================
+   1. VARIABLES GLOBALES (:root)
+   ========================================== */
+:root {
+    --color-primario: #007bff;
+    --color-primario-hover: #0056b3;
+    --color-texto: #333333;
+    --color-fondo: #ffffff;
+    --color-fondo-secundario: #f4f4f4;
+    --color-borde: #dddddd;
+    --fuente-base: Arial, sans-serif;
+    --espaciado: 20px;
+    --radio-borde: 8px;
+}
+
+/* ==========================================
+   2. RESET Y ESTILOS BASE (Mobile First)
+   ========================================== */
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
 body {
-  margin: 0;
-  font-family: Inter, system-ui, sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #0d1b2a;
-  background: #f5f7fa;
+    font-family: var(--fuente-base);
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+    line-height: 1.6;
 }
-.container {
-  width: min(100% - 2rem, 1200px);
-  margin-inline: auto;
-}
-img {
-  max-width: 100%;
-  height: auto;
-}
-a {
-  color: inherit;
-}
-:focus-visible {
-  outline: 3px solid #2563eb;
-  outline-offset: 3px;
-}
-.site-header {
-  background: #0d1b2a;
-  color: white;
-}
-.site-header :focus-visible {
-  outline-color: white;
-}
-.navbar {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-block: 1rem;
-}
-.navbar__menu {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-.navbar a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 0.25rem;
-}
-.js-menu .navbar__menu {
-  display: none;
-}
-.js-menu .navbar__menu.is-open {
-  display: flex;
-}
-button,
-.button {
-  min-height: 44px;
-  min-width: 44px;
-  padding: 0.75rem 1rem;
-  font: inherit;
-  cursor: pointer;
-}
-.button {
-  display: inline-flex;
-  align-items: center;
-  background: #22c55e;
-  color: #0d1b2a;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  font-weight: 600;
-}
-.hero {
-  padding-block: 2rem;
-}
-h1 {
-  font-size: clamp(1.75rem, 5vw, 3rem);
-  line-height: 1.2;
-}
-.skip-link {
-  position: absolute;
-  top: -5rem;
-  left: 1rem;
-}
-.skip-link:focus {
-  top: 1rem;
-  padding: 1rem;
-  background: white;
-}
-@media (min-width: 768px) {
-  .navbar__menu,
-  .js-menu .navbar__menu {
+
+/* ==========================================
+   3. HEADER Y NAVEGACIÓN (Flexbox)
+   ========================================== */
+.cabecera {
+    background-color: #333;
+    color: white;
+    padding: 10px var(--espaciado);
     display: flex;
-    flex-direction: row;
-    width: auto;
-  }
-  .navbar__toggle {
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Flexbox en la navegación */
+.navegacion {
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+    list-style: none;
+    display: flex; /* Flexbox */
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    transition: color 0.3s;
+}
+
+/* Pseudo-clase con propósito: cambio de color al pasar el mouse */
+.menu a:hover {
+    color: var(--color-primario);
+}
+
+/* Selector de atributo: estilo para el botón de soporte */
+a[href="#formulario"].btn-soporte {
+    background-color: var(--color-primario);
+    padding: 8px 15px;
+    border-radius: var(--radio-borde);
+}
+
+a[href="#formulario"].btn-soporte:hover {
+    background-color: var(--color-primario-hover);
+}
+
+/* Botón hamburguesa (oculto en escritorio) */
+.menu-toggle {
     display: none;
-  }
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
-@media (min-width: 1024px) {
-  .hero {
-    padding-block: 4rem;
-  }
+
+/* ==========================================
+   4. SECCIONES GENERALES
+   ========================================== */
+.seccion {
+    padding: 40px var(--espaciado);
+    max-width: 1000px;
+    margin: 0 auto;
 }
-.services__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-  gap: 1.5rem;
-  padding-block: 1rem 2rem;
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--color-primario);
 }
-.service-card {
-  min-width: 0;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  background: white;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--color-primario);
+    padding-bottom: 5px;
 }
-.service-card a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  overflow-wrap: anywhere;
+
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
 }
-.service-card--featured {
-  background: #0d1b2a;
-  color: white;
+
+/* ==========================================
+   5. TARJETAS DE SERVICIOS (Grid)
+   ========================================== */
+.grid-servicios {
+    display: grid; /* Grid */
+    grid-template-columns: 1fr; /* Mobile: 1 columna */
+    gap: var(--espaciado);
 }
-.service-card--featured :focus-visible {
-  outline-color: white;
+
+.tarjeta {
+    border: 1px solid var(--color-borde);
+    padding: var(--espaciado);
+    border-radius: var(--radio-borde);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: var(--color-fondo-secundario);
+    display: flex;
+    flex-direction: column;
 }
-@media (min-width: 768px) {
-  .service-card--featured {
-    grid-column: span 2;
-  }
+
+.tarjeta a {
+    margin-top: auto;
+    color: var(--color-primario);
+    font-weight: bold;
+    text-decoration: none;
 }
-.support-form {
-  display: grid;
-  gap: 1.25rem;
-  width: 100%;
-  max-width: 600px;
-  margin-inline: auto;
-  padding-block: 1.5rem;
+
+.tarjeta a:hover {
+    text-decoration: underline;
 }
+
+/* ==========================================
+   6. FORMULARIO
+   ========================================== */
 fieldset {
-  min-width: 0;
-  margin: 0;
-  padding: 1rem;
-  border: 1px solid #64748b;
-  border-radius: 0.5rem;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    padding: var(--espaciado);
+    margin-bottom: var(--espaciado);
 }
-legend,
-label {
-  font-weight: 600;
+
+legend {
+    font-weight: bold;
+    padding: 0 10px;
+    color: var(--color-primario);
 }
-label {
-  display: block;
-  margin-block: 0.75rem 0.25rem;
+
+.campo {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
 }
-input:not([type='radio']),
-select,
-textarea {
-  width: 100%;
-  min-width: 0;
-  min-height: 44px;
-  font: inherit;
-  padding: 0.65rem;
-  border: 2px solid #64748b;
-  border-radius: 0.3rem;
+
+.campo label {
+    margin-bottom: 5px;
+    font-weight: bold;
 }
-textarea {
-  resize: vertical;
+
+.campo input,
+.campo select,
+.campo textarea {
+    padding: 10px;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
 }
-small {
-  display: block;
+
+/* Foco visible (Accesibilidad) */
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus,
+button:focus {
+    outline: 3px solid var(--color-primario);
+    outline-offset: 2px;
 }
-.priority label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  min-height: 44px;
+
+.ayuda {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 3px;
 }
-.priority input {
-  width: 1.25rem;
-  height: 1.25rem;
+
+.aviso-simulacion {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 10px;
+    border-radius: var(--radio-borde);
+    border: 1px solid #ffeeba;
+    margin-bottom: var(--espaciado);
 }
-input:required:valid,
-select:required:valid,
-textarea:required:valid {
-  border-color: #15803d;
+
+/* Grupo de radio buttons */
+.grupo-radio {
+    border: none;
+    padding: 0;
+    margin: 0;
 }
-input:user-invalid,
-select:user-invalid,
-textarea:user-invalid {
-  border-color: #b91c1c;
+
+.opciones-radio {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
 }
-.support-form:invalid .form-note {
-  font-weight: 600;
+
+.opciones-radio label {
+    font-weight: normal;
+    margin-left: 5px;
 }
-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
+
+/* ==========================================
+   7. BOTONES
+   ========================================== */
+.btn-principal {
+    display: inline-block;
+    background-color: var(--color-primario);
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: var(--radio-borde);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.btn-principal:hover {
+    background-color: var(--color-primario-hover);
+}
+
+/* ==========================================
+   8. FAQ Y CONTACTO
+   ========================================== */
+details {
+    background: var(--color-fondo-secundario);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+summary {
+    font-weight: bold;
+}
+
+#contacto p {
+    margin-bottom: 5px;
+}
+
+/* ==========================================
+   9. FOOTER
+   ========================================== */
+.pie {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: var(--espaciado);
+    margin-top: 40px;
+}
+
+/* ==========================================
+   10. MEDIA QUERIES (Responsive)
+   ========================================== */
+
+/* Tablet (768px en adelante) */
+@media (min-width: 768px) {
+    .grid-servicios {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    }
+}
+
+/* Escritorio (1024px en adelante) */
+@media (min-width: 1024px) {
+    .grid-servicios {
+        grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    }
+}
+
+/* Móvil (menos de 768px) */
+@media (max-width: 767px) {
+    .menu {
+        display: none; /* Ocultar menú por defecto */
+        flex-direction: column;
+        width: 100%;
+        background-color: #333;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: var(--espaciado);
+        gap: 10px;
+    }
+
+    .menu.activo {
+        display: flex; /* Mostrar cuando se active */
+    }
+
+    .menu-toggle {
+        display: block; /* Mostrar botón hamburguesa */
+    }
 }
