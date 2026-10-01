@@ -322,3 +322,57 @@ summary {
         display: block; /* Mostrar botón hamburguesa */
     }
 }
+
+/* ==========================================
+   11. TABLA DE ESTADOS FICTICIOS
+   ========================================== */
+.tabla-responsive {
+    overflow-x: auto;
+    margin-top: var(--espaciado);
+}
+
+.tabla-estados {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.tabla-estados caption {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.tabla-estados th,
+.tabla-estados td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.tabla-estados th {
+    background-color: var(--color-fondo-secundario);
+    font-weight: bold;
+}
+
+.tabla-estados tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Etiquetas de estado */
+.estado {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+}
+
+.estado-pendiente { background-color: #ffc107; color: #333; }
+.estado-revision { background-color: #17a2b8; }
+.estado-resuelto { background-color: #28a745; }
+.estado-progreso { background-color: #007bff; }
+.estado-duplicado { background-color: #dc3545; }
